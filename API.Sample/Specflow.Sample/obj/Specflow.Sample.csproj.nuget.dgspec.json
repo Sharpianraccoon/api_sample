@@ -1,0 +1,95 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Dev\\Git\\api_sample\\API.Sample\\Specflow.Sample\\Specflow.Sample.csproj": {}
+  },
+  "projects": {
+    "C:\\Dev\\Git\\api_sample\\API.Sample\\Specflow.Sample\\Specflow.Sample.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Dev\\Git\\api_sample\\API.Sample\\Specflow.Sample\\Specflow.Sample.csproj",
+        "projectName": "Specflow.Sample",
+        "projectPath": "C:\\Dev\\Git\\api_sample\\API.Sample\\Specflow.Sample\\Specflow.Sample.csproj",
+        "packagesPath": "C:\\Users\\ian.sharp\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev\\Git\\api_sample\\API.Sample\\Specflow.Sample\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ian.sharp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://sdt-nuget.dominos.co.uk/nuget/default": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://dpguk.pkgs.visualstudio.com/_packaging/VSTS-Master/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/DPGUK/4ee04f17-6442-423f-b4a5-bc82fc51a1b0/_packaging/DPG-Legacy-NuGet/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.0.0, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[110.2.0, )"
+            },
+            "SpecFlow.Plus.LivingDocPlugin": {
+              "target": "Package",
+              "version": "[3.9.57, )"
+            },
+            "SpecFlow.xUnit": {
+              "target": "Package",
+              "version": "[3.9.40, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.316\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
