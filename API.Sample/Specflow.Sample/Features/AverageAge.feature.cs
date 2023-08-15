@@ -80,13 +80,17 @@ namespace Specflow.Sample.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Average Age Test")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Average Age Test")]
         [Xunit.TraitAttribute("FeatureTitle", "AverageAge")]
         [Xunit.TraitAttribute("Description", "Average Age Test")]
-        public virtual void AverageAgeTest()
+        [Xunit.InlineDataAttribute("Dave", "67", new string[0])]
+        [Xunit.InlineDataAttribute("Enid", "77", new string[0])]
+        public virtual void AverageAgeTest(string name, string age, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Age", age);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Average Age Test", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -108,8 +112,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+ testRunner.Given(string.Format("I want to get the average age of the name \'{0}\'", name), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 7
+ testRunner.And(string.Format("I expect the average to be \'{0}\'", age), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 8
  testRunner.When("I request the average age of a persons name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 9
+ testRunner.Then("the expected age is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
