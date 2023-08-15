@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using RestSharp;
 using Specflow.Sample.Contexts;
+using Specflow.Sample.Support;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace SpecFlowProject.StepDefinitions
@@ -16,11 +17,14 @@ namespace SpecFlowProject.StepDefinitions
     public sealed class AverageAgeSteps
     {
         private readonly DomainContext _domainContext;
+        private readonly RestHelpers _restHelpers;
 
         public AverageAgeSteps(
-            DomainContext domainContext)
+            DomainContext domainContext,
+            RestHelpers restHelpers)
         {
             _domainContext = domainContext;
+            _restHelpers = restHelpers;
         }
 
         [Given(@"I want to get the average age of the name '([^']*)'")]
@@ -46,11 +50,7 @@ namespace SpecFlowProject.StepDefinitions
         [Then(@"the expected age is returned")]
         public void ThenTheExpectedAgeIsReturned()
         {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-            var responseJson = JsonSerializer.Deserialize<AverageAge>(_domainContext.RestResponse.Content ?? "", options);
+            var responseJson = _restHelpers.DeserializeJsonResponse<AverageAge>(_domainContext.RestResponse);
 
             responseJson?.Name.Should().Be(_domainContext.Name);
             responseJson?.Age.Should().Be(_domainContext.Age);
