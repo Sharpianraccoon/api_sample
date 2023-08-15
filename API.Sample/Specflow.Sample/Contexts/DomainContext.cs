@@ -13,7 +13,7 @@ namespace Specflow.Sample.Contexts
         public RestRequest RestRequest;
         public RestResponse RestResponse;
         public int Count;
-        public string Name;
+        public string? Name;
         public int Age;
     }
 }
