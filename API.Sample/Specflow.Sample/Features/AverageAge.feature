@@ -9,11 +9,13 @@ Scenario Outline: Average age of a person is returned
 	When I request the average age of a persons name
 	Then the expected age is returned
 	Examples: 
-	| Name | Age | Count |
-	| Dave | 67  | 57984 |
-	| Enid | 77  | 408   |
+	| Name     | Age | Count |
+	| Dave     | 67  | 57984 |
+	| Enid     | 77  | 408   |
 
-Scenario: Expected error is returned when name is not specified
-	Given I want to get the average age of the name '<EMPTY>'
+Scenario Outline: Expected error is returned when name is not specified
 	When I request the average age of a persons name without specifying a name
-	Then the expected error code and message are returned
+	Then the expected error code "<StatusCode>" and "<ErrorMessage>" are returned
+	Examples: 
+	| StatusCode           | ErrorMessage             |
+	| Unprocessable Entity | Missing 'name' parameter |

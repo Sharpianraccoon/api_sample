@@ -1,8 +1,7 @@
-﻿using System.Text.Json;
+﻿using System.Net;
 using RestSharp;
 using Specflow.Sample.Contexts;
 using Specflow.Sample.Support;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace SpecFlowProject.StepDefinitions
 {
@@ -64,14 +63,14 @@ namespace SpecFlowProject.StepDefinitions
         public async Task WhenIRequestTheAverageAgeOfAPersonsNameWithoutSpecifyingAName()
         {
             _domainContext.RestClient = new RestClient();
-            _domainContext.RestRequest = new RestRequest("https://api.agify.io?" + _domainContext.Name, Method.Get);
+            _domainContext.RestRequest = new RestRequest("https://api.agify.io", Method.Get);
             _domainContext.RestResponse = await _domainContext.RestClient.ExecuteAsync(_domainContext.RestRequest);
         }
 
         [Then(@"the expected age is returned")]
         public void ThenTheExpectedAgeIsReturned()
         {
-            //Build up expected response if you want to compare the whole response object
+            //Build up expected response
             var expectedResponse = new AverageAge()
             {
                 Name = _domainContext.Name,
@@ -79,23 +78,23 @@ namespace SpecFlowProject.StepDefinitions
                 Count = _domainContext.Count
             };
 
-            //Deserialize the response so it can be asserted on easily in a nice format
-            var actualResponse = _restHelpers.DeserializeJsonResponse<AverageAge>(_domainContext.RestResponse);
-
-            //Assert on individual properties in the response
-            actualResponse?.Name.Should().Be(_domainContext.Name);
-            actualResponse?.Age.Should().Be(_domainContext.Age);
+            //Deserialize the response
+            var response = _restHelpers.DeserializeJsonResponse<AverageAge>(_domainContext.RestResponse);
 
             //Compare and assert all properties in the response
-            actualResponse.Should().BeEquivalentTo(expectedResponse);
+            response.Should().BeEquivalentTo(expectedResponse);
+
+            //Assert on individual properties in the response
+            response?.Name.Should().Be(_domainContext.Name);
+            response?.Age.Should().Be(_domainContext.Age);
         }
 
-        [Then(@"the expected error code and message are returned")]
-        public void ThenTheExpectedErrorCodeAndMessageIsReturned()
+        [Then(@"the expected error code ""([^""]*)"" and ""([^""]*)"" are returned")]
+        public void ThenTheExpectedErrorCodeAndAreReturned(HttpStatusCode statusCode, string errorMessage)
         {
-            var actualResponse = _restHelpers.DeserializeJsonResponse<ErrorModel>(_domainContext.RestResponse);
-            //Assert expected error message and status code here
-            actualResponse?.Error.Should().Be("Missing 'name' parameter");
+            _domainContext.RestResponse.StatusCode.Should().Be(statusCode);
+            var response = _restHelpers.DeserializeJsonResponse<ErrorModel>(_domainContext.RestResponse);
+            response?.Error.Should().Be(errorMessage);
         }
     }
 }

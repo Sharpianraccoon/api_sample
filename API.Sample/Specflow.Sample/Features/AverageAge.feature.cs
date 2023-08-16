@@ -132,13 +132,16 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Expected error is returned when name is not specified")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Expected error is returned when name is not specified")]
         [Xunit.TraitAttribute("FeatureTitle", "AverageAge")]
         [Xunit.TraitAttribute("Description", "Expected error is returned when name is not specified")]
-        public virtual void ExpectedErrorIsReturnedWhenNameIsNotSpecified()
+        [Xunit.InlineDataAttribute("Unprocessable Entity", "Missing \'name\' parameter", new string[0])]
+        public virtual void ExpectedErrorIsReturnedWhenNameIsNotSpecified(string statusCode, string errorMessage, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("StatusCode", statusCode);
+            argumentsOfScenario.Add("ErrorMessage", errorMessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Expected error is returned when name is not specified", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 16
 this.ScenarioInitialize(scenarioInfo);
@@ -161,13 +164,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 17
- testRunner.Given("I want to get the average age of the name \'<EMPTY>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 18
  testRunner.When("I request the average age of a persons name without specifying a name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
- testRunner.Then("the expected error code and message are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
+ testRunner.Then(string.Format("the expected error code \"{0}\" and \"{1}\" are returned", statusCode, errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
