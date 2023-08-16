@@ -15,7 +15,7 @@ Scenario Outline: Average age of a person is returned
 
 Scenario Outline: Expected error is returned when name is not specified
 	When I request the average age of a persons name without specifying a name
-	Then the expected error code "<StatusCode>" and "<ErrorMessage>" are returned
+	Then the expected status code "<StatusCode>" and error message "<ErrorMessage>" are returned
 	Examples: 
 	| StatusCode           | ErrorMessage             |
 	| Unprocessable Entity | Missing 'name' parameter |

@@ -89,8 +89,8 @@ namespace SpecFlowProject.StepDefinitions
             response?.Age.Should().Be(_domainContext.Age);
         }
 
-        [Then(@"the expected error code ""([^""]*)"" and ""([^""]*)"" are returned")]
-        public void ThenTheExpectedErrorCodeAndAreReturned(HttpStatusCode statusCode, string errorMessage)
+        [Then(@"the expected status code ""([^""]*)"" and error message ""([^""]*)"" are returned")]
+        public void ThenTheExpectedStatusCodeAndErrorMessageAreReturned(HttpStatusCode statusCode, string errorMessage)
         {
             _domainContext.RestResponse.StatusCode.Should().Be(statusCode);
             var response = _restHelpers.DeserializeJsonResponse<ErrorModel>(_domainContext.RestResponse);

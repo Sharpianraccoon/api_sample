@@ -167,7 +167,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I request the average age of a persons name without specifying a name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then(string.Format("the expected error code \"{0}\" and \"{1}\" are returned", statusCode, errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("the expected status code \"{0}\" and error message \"{1}\" are returned", statusCode, errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
